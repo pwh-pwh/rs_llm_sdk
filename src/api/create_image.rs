@@ -30,29 +30,33 @@ pub struct CreateImageRequest {
     pub user: Option<String>,
 }
 
-#[derive(Serialize, Clone, Debug, Eq, PartialEq)]
+#[derive(Serialize, Clone, Debug, Eq, PartialEq, Default)]
 pub enum ImageModel {
     #[serde(rename = "dall-e-3")]
+    #[default]
     DallE3,
 }
 
-#[derive(Serialize, Clone, Debug, Eq, PartialEq)]
+#[derive(Serialize, Clone, Debug, Eq, PartialEq, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum ImageQuality {
+    #[default]
     Standard,
     Hd,
 }
 
-#[derive(Serialize, Clone, Debug, Eq, PartialEq)]
+#[derive(Serialize, Clone, Debug, Eq, PartialEq, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum ImageResponseFormat {
+    #[default]
     Url,
     B64Json,
 }
 
-#[derive(Serialize, Clone, Debug, Eq, PartialEq)]
+#[derive(Serialize, Clone, Debug, Eq, PartialEq, Default)]
 pub enum ImageSize {
     #[serde(rename = "1024x1024")]
+    #[default]
     Large,
     #[serde(rename = "1792x1024")]
     LargeWide,
@@ -60,23 +64,12 @@ pub enum ImageSize {
     LargeTail,
 }
 
-#[derive(Serialize, Clone, Debug, Eq, PartialEq)]
+#[derive(Serialize, Clone, Debug, Eq, PartialEq, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum ImageStyle {
+    #[default]
     Vivid,
     Natural,
-}
-
-impl Default for ImageModel {
-    fn default() -> Self {
-        ImageModel::DallE3
-    }
-}
-
-impl Default for ImageQuality {
-    fn default() -> Self {
-        ImageQuality::Standard
-    }
 }
 
 impl IntoRequest for CreateImageRequest {
@@ -109,24 +102,6 @@ pub struct ImageObject {
     pub url: Option<String>,
     /// revised_prompt
     pub revised_prompt: String,
-}
-
-impl Default for ImageSize {
-    fn default() -> Self {
-        ImageSize::Large
-    }
-}
-
-impl Default for ImageStyle {
-    fn default() -> Self {
-        ImageStyle::Vivid
-    }
-}
-
-impl Default for ImageResponseFormat {
-    fn default() -> Self {
-        ImageResponseFormat::Url
-    }
 }
 
 //测试模块
