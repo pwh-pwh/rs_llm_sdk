@@ -46,5 +46,6 @@ impl LlmSdk {
             req.bearer_auth(&self.token)
         };
         req.timeout(Duration::from_secs(TIMEOUT))
+            .header("Content-Type", "application/json")
     }
 }
